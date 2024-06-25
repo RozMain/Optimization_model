@@ -1,0 +1,32 @@
+w=2;
+
+%% Desriptive statistics
+
+figure('Name','Descriptive statistics of demands','units','normalized','outerposition',[0 0 1 1])
+
+%TPTmin=percentt(PDM,w,0); %у тебя это считается по своему и выводится по своему
+%TPTmax=percentt(PDM,w,1); %у тебя это считается по своему и выводится по своему
+TPCmin=percentc(PDM,w,0);
+TPCmax=percentc(PDM,w,1);
+
+    subplot(1,4,1)
+    bar(categorical({'TPT_{min}','TPT_{max}'}),[TPTmin,TPTmax])
+    title('Duration')
+    
+    subplot(1,4,2)
+    bar(categorical({'TPC_{min}','TPC_{max}'}),[TPCmin,TPCmax])    
+    title('Cost demands')
+    
+    subplot(1,4,3)
+    c=categorical({});
+    TPRmin=percentr(PDM,w,0);
+    TPRmax=percentr(PDM,w,1);
+    TPR=[TPRmin,TPRmax];
+    for j=1:size(TPR,2)
+         c(j,1)=strcat('TPR_',num2str(j),'_{min}');
+         c(j,2)=strcat('TPR_',num2str(j),'_{max}');
+    end     
+    bar(c,TPR)
+    title('Resource demands')
+    
+   
